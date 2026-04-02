@@ -22,7 +22,7 @@
 ```bash
 pip install customtkinter
 python gui.py
-
+```
 
 ## 👤 Автор
 Создано в рамках обучения программированию.
