@@ -10,11 +10,13 @@ class FileOrganizerGUI(ctk.CTk):
     def __init__(self):
         super().__init__()
     
-        self.title("🧹 File Organizer")
+        self.title("File Organizer")
         self.geometry("500x400")
 
+        self.iconbitmap("icon.ico")
+
         # Заголовок
-        self.label = ctk.CTkLabel(self, text = "Уборщик Файлов v4.0", font=("Arial", 20, "bold"))
+        self.label = ctk.CTkLabel(self, text = "Уборщик Файлов v5.1", font=("Arial", 20, "bold"))
         self.label.pack(pady = 20)
 
         # Кнопка запуска
@@ -76,7 +78,7 @@ class FileOrganizerGUI(ctk.CTk):
         files = os.listdir(self.work_path)
 
         for file in files:
-            if file in ["main.py", "gui.py", "config.json"] or file.endswith(".log"):
+            if file in ["main.py", "gui.py", "config.json", "icon.ico"] or file.endswith(".log"):
                 skipped_count += 1
                 continue
         
