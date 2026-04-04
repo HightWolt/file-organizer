@@ -2,9 +2,11 @@ import os
 import json
 import shutil
 import threading
-from typing import Tuple
 import customtkinter as ctk
 from datetime import datetime
+
+ctk.set_appearance_mode("System")
+ctk.set_default_color_theme("blue")
 
 class FileOrganizerGUI(ctk.CTk):
     def __init__(self):
@@ -12,12 +14,16 @@ class FileOrganizerGUI(ctk.CTk):
     
         self.title("File Organizer")
         self.geometry("500x400")
-
         self.iconbitmap("icon.ico")
 
         # Заголовок
-        self.label = ctk.CTkLabel(self, text = "Уборщик Файлов v5.1", font=("Arial", 20, "bold"))
+        self.label = ctk.CTkLabel(self, text = "Уборщик Файлов v5.1", font = ("Arial", 20, "bold"))
         self.label.pack(pady = 20)
+
+        # Переключатель тем
+        self.appearance_mode_menu = ctk.CTkSegmentedButton(self, values = ["Light", "Dark", "System"], command = self.change_appearance_mode_event)
+        self.appearance_mode_menu.pack(pady = "10")
+        self.appearance_mode_menu.set("System")
 
         # Кнопка запуска
         self.start_button = ctk.CTkButton(self, text = "🚀 Запустить уборку", command=self.start_cleanup_thread)
@@ -36,6 +42,9 @@ class FileOrganizerGUI(ctk.CTk):
 
         # Настройки
         self.work_path = "."
+    
+    def change_appearance_mode_event(self, new_appearance_mode: str):
+        ctk.set_appearance_mode(new_appearance_mode )
     
     def log(self, message):
         timestamp = datetime.now().strftime("%H%M%S")
